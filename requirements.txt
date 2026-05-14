@@ -1,0 +1,5 @@
+openai  # OpenAI API client library
+chromadb  # ChromaDB for vector storage
+pydantic  # Data validation and settings management
+python-dotenv  # Load environment variables from .env file
+python-settings  # Manage application settings
