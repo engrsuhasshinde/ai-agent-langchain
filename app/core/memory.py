@@ -1,0 +1,1 @@
+conversation_history = []  # This will store the conversation history as a list of messages
