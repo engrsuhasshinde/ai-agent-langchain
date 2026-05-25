@@ -2,7 +2,7 @@ from app.core.llm import client
 from app.core.memory import conversation_history
 from app.core.vectorstore import collection
 from app.core.embeddings import get_embedding
-from app.utils.text_chunker import split_into_chunks
+from app.core.text_splitter import split_text
 from app.config.settings import settings
 from app.chains.rag_chain import prepare_rag_prompt
 
@@ -13,7 +13,7 @@ def save_message(
         role: str,
         text: str
 ):
-    chunks = split_into_chunks(text)
+    chunks = split_text(text)
 
     for index, chunk in enumerate(chunks):
         chunk_id = f"{message_id}_chunk_{index}"
