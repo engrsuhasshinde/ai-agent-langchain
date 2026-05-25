@@ -7,7 +7,7 @@ def split_into_chunks(
 ) -> list[str]:
 
     # Split the text into sentences using regex
-    sentences = re.split( r'(? <= [.!?]) +', text.strip())
+    sentences = re.split( r'(?<=[.!?]) +', text.strip())
 
     # Remove any empty sentences
     sentences = [s for s in sentences if s.strip()]
