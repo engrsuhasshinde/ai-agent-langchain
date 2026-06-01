@@ -1,13 +1,13 @@
-import chromadb
+from langchain_chroma import Chroma
+from app.core.embeddings import embeddings_model
 from app.config.settings import settings
 
-db = chromadb.PersistentClient(
-    path = settings.CHROMA_DB_PATH
-)
+# Chroma from LangChain wraps the raw client
+# Handles: ID generation, embedding calls, upsert - all in one method
 
-collection = db.get_or_create_collection(
-    name = settings.COLLECTION_NAME,
-    metadata = {
-        "hnsw:space": "cosine"
-    }
+vectorstore = Chroma(
+    collection_name = settings.COLLECTION_NAME,
+    embedding_function = embeddings_model,
+    persist_directory = settings.CHROMA_DB_PATH,
+    collection_metadata = { "hnsw:space": "cosine" }  # Optional: specify the distance metric for HNSW index (e.g., "cosine", "euclidean", "dot_product"
 )

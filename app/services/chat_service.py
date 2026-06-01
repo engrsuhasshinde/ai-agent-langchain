@@ -19,11 +19,11 @@ def save_message(
         chunk_id = f"{message_id}_chunk_{index}"
         embedding = get_embedding(chunk)
 
-        collection.upsert(
-            ids=[chunk_id],
-            embeddings=[embedding],
-            documents=[chunk],
-            metadatas=[{ "role": role }]
+        vectorstore.add_texts(
+            texts = chunks,
+            metadatas = [{
+                "role": role
+            }]
         )
 
 def process_chat(user_input: str):
